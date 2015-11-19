@@ -65,6 +65,9 @@
     ;; edit html tags like sexps
     tagedit
 
+    ;; YAML
+    yaml-mode
+
     ;; git integration
     magit))
 
