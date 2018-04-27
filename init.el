@@ -68,6 +68,9 @@
     ;; YAML
     yaml-mode
 
+    ;; Editor Config
+    editorconfig
+
     ;; git integration
     magit))
 
@@ -133,3 +136,5 @@
 ;; Langauage-specific
 (load "setup-clojure.el")
 (load "setup-js.el")
+(load "setup-prolog.el")
+(load "setup-editorconfig.el")

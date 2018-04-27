@@ -70,3 +70,8 @@
     (quit nil)))
 
 (setq electric-indent-mode nil)
+
+;; Emacs Client
+(setq server-socket-dir (format "/tmp/emacs%d" (user-uid)))
+(setq server-use-tcp nil)
+(server-start)
