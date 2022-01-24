@@ -1,4 +1,11 @@
 ;;;;
+;; ENV
+;;;
+
+;; Define PATH
+(setenv "PATH" (concat (getenv "PATH") ":/anaconda3/bin"))
+
+;;;;
 ;; Packages
 ;;;;
 
@@ -69,6 +76,11 @@
     ;; git integration
     magit))
 
+(eval-when-compile
+  ;; Following line is not needed if use-package.el is in ~/.emacs.d
+  ;(add-to-list 'load-path "<path where use-package is installed>")
+  (require 'use-package))
+
 ;; On OS X, an Emacs instance started from the graphical user
 ;; interface will have a different environment than a shell in a
 ;; terminal window, because OS X does not run a shell during the
@@ -101,6 +113,9 @@
 ;;;;
 ;; Customization
 ;;;;
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
 
 ;; Add a directory to our load path so that when you `load` things
 ;; below, Emacs knows where to look for the corresponding file.
@@ -129,6 +144,7 @@
 
 ;; Langauage-specific
 (load "setup-clojure.el")
+(load "setup-python.el")
 (load "setup-js.el")
 (load "setup-prolog.el")
 (load "setup-editorconfig.el")
@@ -139,10 +155,14 @@
  ;; If there is more than one, they won't work right.
  '(coffee-tab-width 2)
  '(package-selected-packages
-   '(yaml-mode tagedit smex rainbow-delimiters projectile paredit magit exec-path-from-shell editorconfig clojure-mode-extra-font-locking cider)))
+   '(adoc-mode yaml-mode tagedit smex rainbow-delimiters projectile paredit magit exec-path-from-shell editorconfig clojure-mode-extra-font-locking cider)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(setq inferior-lisp-program "/usr/local/bin/sbcl")
+(require 'slime-autoloads)
+(slime-setup '(slime-fancy))
